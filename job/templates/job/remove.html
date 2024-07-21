@@ -1,0 +1,22 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block job_active %}
+    active
+{% endblock %}
+
+{% block title %}
+    Remove Job
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-center heading-text m-5">{{ Remove }} Job</h2>
+    <p class="text-danger text-center"><strong>Do you want to delete {{ job.job_title}}?</strong></p>
+    <div class="d-flex justify-content-center">
+        <form method="POST" class="col-md-3" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+{% endblock %}
+

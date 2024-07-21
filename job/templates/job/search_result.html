@@ -1,0 +1,48 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block job_active %}
+    active
+{% endblock %}
+
+{% block title %}
+    Search Job
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid " style="">
+      <h4 style="color:blue; text-align: center;">Search results for "{{ query }}"</h4>
+      <hr>
+      <div class="row" style="display: flex;
+      flex-wrap: wrap;">
+
+      {% if results %}
+      <ul>
+          {% for i in results %}
+
+            <div class="col-md-4">
+                <div class="card" style="margin: 15px;
+                padding: 15px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.job_title}}</h5><hr>
+                     <p class="card-text">Posted by : {{i.user.pro.pro_name}}</p>
+                     <a href="{% url 'job:detail' i.slug %}" class="btn btn-primary">View Job</a>
+                  </div>
+                </div>
+              </div>
+              {% if forloop.counter|divisibleby:3 %}
+                </div><div class="row">
+              {% endif %}
+
+
+
+        {% endfor %}
+    </ul>
+{% else %}
+    <h4 style="color:indianred">No results found for "{{ query }}"</h4>
+{% endif %}
+
+    </div>
+
+{% endblock %}
+
+

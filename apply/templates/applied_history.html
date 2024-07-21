@@ -1,0 +1,45 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block apply_active %}
+    active
+{% endblock %}
+
+{% block title %}
+    Applied Job History
+{% endblock %}
+
+{% block content %}
+<div class="container "  style=" padding: 3%;">
+      <h4 style="text-align: center; color: blue;">Applied Jobs</h4>
+    {% csrf_token %}
+      <table  class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">S.N</th>
+            <th scope="col">Job Title</th>
+            <th>Applied Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for i in applyjob %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{i.job.job_title}}</td>
+            <td>{{i.jobapplied_at}}</td>
+            <td><a href="{% url 'apply:delete_applied' i.pk %}" class="btn btn-danger">Delete</a></td>
+          </tr>
+
+          {% empty %}
+          <li>No Jobs applied.</li>
+      {% endfor %}
+    </tbody>
+      </table>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+

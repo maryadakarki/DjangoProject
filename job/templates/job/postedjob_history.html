@@ -1,0 +1,38 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block job_active %}
+    active
+{% endblock %}
+
+{% block content %}
+    <div class="container p-2">
+        <h1 class="text-center m-5">Jobs that you've posted.</h1>
+        <a href="{% url 'job:create' %}" class="btn btn-success mb-2">Add Job</a>
+        <div class="row">
+            {% for job in jobs %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ job.job_title }}</h4>
+                            <hr>
+                            - Posted by {{ job.user.username }}
+                            <br>
+                            - Valid till {{job.job_validity}}
+                        </div>
+                        <hr class="mt-0">
+                        <div class="card-body pt-0">
+                            <a href="{% url 'job:update' job.slug %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'job:remove' job.slug %}" class="btn btn-danger">Delete</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="d-flex flex-row justify-content-center align-items-center">
+                    <p>Please add a Job.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

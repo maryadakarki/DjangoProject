@@ -1,0 +1,31 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block apply_active %}
+    active
+{% endblock %}
+
+{% block title %}
+    Remove Job
+{% endblock %}
+
+{% block content %}
+ <div class="row" style="display: flex; flex-wrap: wrap; padding-left:32%; padding-right: 25%;padding-top: 2%;">
+
+        <div class="col-lg">
+        <form method="post" enctype="multipart/form-data">
+            <div class="card " style="margin-left: 4px; margin-right: 4px; margin-top: 2px; padding: 2%;">
+            {% csrf_token %}
+
+                <b>Terms and Conditions:</b>
+                <p>By clicking on checkbox and applying to job, your profile information is sent to the user who posted the job.Any missuse of your personal information will not be addressed by us.</p><hr>
+                <p>Do you want to apply the job?</p>
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Apply</button>
+        </div>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,37 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block job_active %}
+    active
+{% endblock %}
+
+{% block title %}
+     Job Detail
+{% endblock %}
+
+{% block content %}
+
+<div class="row" style="display: flex; flex-wrap: wrap; padding-left:32%; padding-right: 25%;padding-top: 2%;">
+
+            <div class="col-md-10">
+                <h4 style="text-align: center; color: blue;">Job Details</h4>
+
+                <div class="card " style="margin-left: 4px; margin-right: 4px; margin-top: 2px;">
+
+                <div class="card-body">
+                  <h5 class="card-title">{{ job.job_title}}</h5><hr>
+                    <p class="card-text">Posted By: {{job.user.username}}<hr></p>
+                   <p class="card-text">Job Description: {{job.job_description}}<hr></p>
+                   <p class="card-text">Category: {{ job.category }}<hr></p>
+                   <p class="card-text">Validity: {{job.job_validity}}<hr></p>
+                    <p class="card-text">
+                   <form method="post" enctype="multipart/form-data ">
+                        {% csrf_token %}
+                        <a href="{% url 'apply:apply_job' job.slug %}" class="btn btn-primary ">Apply</a>
+                    </form></p>
+                </div>
+              </div>
+
+            </div>
+        </div>
+
+{% endblock %}

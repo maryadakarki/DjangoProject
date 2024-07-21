@@ -1,0 +1,49 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block apply_active %}
+    active
+{% endblock %}
+
+{% block title %}
+    Remove Job
+{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 3%;">
+    <h4 style="text-align: center; color: blue;">{{ job.job_title }}</h4>
+    {% csrf_token %}
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">S.N</th>
+                <th scope="col">Applicant Name</th>
+                <th scope="col">Profile</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for application in apply_job %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <div class="profile-photo-form-container" style="margin: 20px; width: 50px; height: 50px; border-radius: 50%; overflow: hidden; background-color: #ccc;">
+                        <img style="width: 100%; height: 100%; object-fit: cover;" src="{{ application.user.pro.pro_pic.url }}" alt="user-image">
+                    </div>
+                    {{ application.user.pro.pro_name }}
+                </td>
+                <td>
+                    <a href="{% url 'apply:profile_view' application.user.id %}">Here
+                        <i class="fa fa-eye" style="color: grey;"></i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" style="text-align: center; color: indianred;">No Applicants.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

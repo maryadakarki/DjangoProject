@@ -1,0 +1,53 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block job_active %}
+    active
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid " style="background-color: white; height: 100px;">
+        <form class="d-flex" role="search" style="padding: 30px;" action="{% url 'job:job_search' %}" method="get">
+          <label><h3 style=""><pre>        Looking for a Job?       </pre></h3></label>
+          <input class="form-control me-2"
+            style="width: 40%"
+            type="text" placeholder="Search For Job" aria-label="Search" name="q">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+      </div>
+      <br><br>
+      <h3 style="text-align: center; color: blue;">Welcome to Admin Panel</h3>
+      <div class="row" style="display: flex;
+      flex-wrap: wrap; padding: 4%;">
+
+
+          <div class="col-md-3">
+            <div class="card " style="margin: 15px;
+            padding: 15px; border-color:#ccdbeb;">
+              <div class="card-body">
+                <h5 class="card-title">Job Report</h5><hr>
+                 <a href="{% url 'adminpanel:job_report' %}" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card" style="margin: 15px;
+            padding: 15px; border-color:#ccdbeb;">
+              <div class="card-body">
+                <h5 class="card-title">Category</h5><hr>
+                 <a href="{% url 'adminpanel:list_c' %}" class="btn btn-primary">View </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card" style="margin: 15px;
+            padding: 15px; border-color:#ccdbeb;">
+              <div class="card-body">
+                <h5 class="card-title">User</h5><hr>
+                 <a href="{% url 'adminpanel:users' %}" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+      </div>
+{% endblock %}
+
+
